@@ -1,0 +1,24 @@
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        def fun(self,adjlist,visited,i):
+            visited[i]=True
+            for val in adjlist[i]:
+                    if visited[val]==False:
+                        fun(self,adjlist,visited,val)
+
+
+        n=len(isConnected)
+        visited=[False]*n
+        adjlist=[[]for i in range(n)]
+        count=0
+        for i in range(n):
+            for j in range(n):
+                if isConnected[i][j]==1 and i!=j:
+                    adjlist[i].append(j)
+                    adjlist[j].append(i)
+        count=0
+        for i in range(n):
+            if visited[i]==False:
+                fun(self,adjlist,visited,i)
+                count+=1
+        return count
